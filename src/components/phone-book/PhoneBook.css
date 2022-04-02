@@ -1,0 +1,15 @@
+.Phone-book h1 {
+  color: #6bc350;
+  font-weight: bold;
+  text-shadow: 5px 2px 3px #387b40e6;
+  margin: 20px 0 80px;
+}
+.Phone-book__head-wrapper {
+  display: flex;
+  justify-content: center;
+}
+.Phone-book__chamomile-img {
+  width: 50px;
+  height: 50px;
+  margin-top: 10px;
+}

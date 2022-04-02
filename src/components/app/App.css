@@ -1,0 +1,15 @@
+body {
+  text-align: center;
+  background-color: rgb(252, 252, 252);
+}
+.hidden {
+  display: none;
+}
+input[type=text]:not(.browser-default):focus:not([readonly]){
+  border-bottom: 1px solid #6bc350;
+  -webkit-box-shadow: 0 1px 0 0 #6bc350;
+  box-shadow: 0 1px 0 0 #6bc350;
+}
+input[type=text]:not(.browser-default):focus:not([readonly])+label  {
+  color: #6bc350;
+}
