@@ -33,14 +33,18 @@ class ContactsList extends React.Component {
   }
 
   state = {
-    usersList: [
-      {
-        firstName: "Daniel",
-        lastName: "Hrytsenko",
-        phoneNumber: "380971234567",
-      },
-    ],
+    usersList: [],
   };
+
+  componentDidUpdate() {
+    localStorage.setItem("user-item", JSON.stringify(this.state.usersList));
+  }
+
+  componentDidMount() {
+    const localStorageRef =
+      localStorage.getItem("user-item") || JSON.stringify(this.state.usersList);
+    this.setState({ usersList: JSON.parse(localStorageRef) });
+  }
 
   toggleShowForm() {
     this.setState((prevState) => ({
@@ -50,9 +54,10 @@ class ContactsList extends React.Component {
 
   onAddContact = (userData) => {
     const newUser = userData;
-    const userList = this.state.usersList;
-    userList.push(newUser);
-    this.setState(userList);
+    const { usersList } = this.state;
+    usersList.push(newUser);
+    this.setState(usersList);
+    this.toggleShowForm();
   };
 
   onDeleteContact = (index) => {
@@ -88,13 +93,17 @@ class ContactsList extends React.Component {
         <button
           onClick={this.toggleShowForm}
           className="Add-contact__btn-open-form waves-effect waves-light btn green"
-        >Toggle form
+        >
+          Add contact
         </button>
         {this.state.isFormFormShow ? (
-            <AddContact onAddContact={this.onAddContact} />
-          ) : (
-            ""
-          )}
+          <AddContact
+            onAddContact={this.onAddContact}
+            toggleShowForm={this.toggleShowForm}
+          />
+        ) : (
+          ""
+        )}
       </div>
     );
   }
